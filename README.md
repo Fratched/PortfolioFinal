@@ -58,7 +58,7 @@ The game demonstrates JavaScript concepts such as variables, functions, conditio
 
 **GitHub Pages:**
 
-https://fratched.github.io/madsstudio.github.io/
+https://fratched.github.io/portfolio/
 
 ## How to Access the Project
 
