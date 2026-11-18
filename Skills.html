@@ -1,0 +1,357 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills | Domenico Fabre-Barile</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #101827;
+            color: #f1f5f9;
+        }
+
+        /* Navigation */
+        nav {
+            background: #1e293b;
+            padding: 18px;
+            text-align: center;
+        }
+
+        nav a {
+            color: #f1f5f9;
+            text-decoration: none;
+            margin: 0 12px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #60a5fa;
+        }
+
+        /* Page Header */
+        header {
+            text-align: center;
+            padding: 55px 20px 30px;
+        }
+
+        header h1 {
+            font-size: 38px;
+            margin-bottom: 10px;
+            color: #60a5fa;
+        }
+
+        header p {
+            color: #cbd5e1;
+        }
+
+        /* Filter Buttons */
+        .filters {
+            text-align: center;
+            margin: 25px 10px;
+        }
+
+        .filters button {
+            background: #334155;
+            color: white;
+            border: none;
+            padding: 11px 18px;
+            margin: 5px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .filters button:hover,
+        .filters button.active {
+            background: #2563eb;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1100px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .skill-category {
+            margin-bottom: 45px;
+        }
+
+        .skill-category h2 {
+            color: #60a5fa;
+            border-bottom: 2px solid #334155;
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+        }
+
+        /* Skill Cards */
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 18px;
+        }
+
+        .skill-card {
+            background: #1e293b;
+            padding: 22px;
+            border-radius: 10px;
+            border: 1px solid #334155;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: #60a5fa;
+        }
+
+        .skill-card h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .skill-card p {
+            color: #94a3b8;
+            font-size: 14px;
+            margin-bottom: 0;
+        }
+
+        .level {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 5px 10px;
+            background: #334155;
+            color: #93c5fd;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 25px;
+            margin-top: 40px;
+            background: #1e293b;
+            color: #94a3b8;
+        }
+
+        @media (max-width: 600px) {
+            nav a {
+                display: inline-block;
+                margin: 7px;
+            }
+
+            header h1 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="skills.html">Skills</a>
+        <a href="projects.html">Projects</a>
+         <a href="game.html">Game</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <header>
+        <h1>My Skills</h1>
+        <p>Technologies and programming concepts I have been learning and practicing.</p>
+    </header>
+
+    <!-- JavaScript Filter Buttons -->
+    <div class="filters">
+        <button class="active" onclick="filterSkills('all', this)">All Skills</button>
+        <button onclick="filterSkills('frontend', this)">Front-End</button>
+        <button onclick="filterSkills('programming', this)">Programming</button>
+        <button onclick="filterSkills('tools', this)">Development Tools</button>
+    </div>
+
+    <main>
+
+        <!-- Category A -->
+        <section class="skill-category" data-category="frontend">
+            <h2>Category A – Front-End Development</h2>
+
+            <div class="skill-grid">
+
+                <div class="skill-card">
+                    <h3>HTML5</h3>
+                    <p>Creating the structure and content of webpages.</p>
+                    <span class="level">Comfortable</span>
+                </div>
+
+                <div class="skill-card">
+                    <h3>CSS3</h3>
+                    <p>Styling webpages with colors, layouts, and animations.</p>
+                    <span class="level">Comfortable</span>
+                </div>
+
+                <div class="skill-card">
+                    <h3>JavaScript</h3>
+                    <p>Adding logic and interactive features to webpages.</p>
+                    <span class="level">Learning</span>
+                </div>
+
+                <div class="skill-card">
+                    <h3>Responsive Design</h3>
+                    <p>Making webpages adapt to different screen sizes.</p>
+                    <span class="level">Learning</span>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Category B -->
+        <section class="skill-category" data-category="programming">
+            <h2>Category B – Programming Concepts</h2>
+
+            <div class="skill-grid">
+
+                <div class="skill-card">
+                    <h3>Variables and Data Types</h3>
+                    <p>Storing and working with different types of information.</p>
+                    <span class="level">Comfortable</span>
+                </div>
+
+                <div class="skill-card">
+                    <h3>Conditional Statements</h3>
+                    <p>Using if, else if, and else to make decisions.</p>
+                    <span class="level">Comfortable</span>
+                </div>
+
+                <div class="skill-card">
+                    <h3>Loops</h3>
+                    <p>Repeating instructions using for and while loops.</p>
+                    <span class="level">Learning</span>
+                </div>
+
+                <div class="skill-card">
+                    <h3>Functions</h3>
+                    <p>Organizing reusable blocks of code.</p>
+                    <span class="level">Learning</span>
+                </div>
+
+                <div class="skill-card">
+                    <h3>Arrays</h3>
+                    <p>Storing multiple values in one variable.</p>
+                    <span class="level">Learning</span>
+                </div>
+
+                <div class="skill-card">
+                    <h3>Objects</h3>
+                    <p>Organizing related information using properties and values.</p>
+                    <span class="level">Learning</span>
+                </div>
+
+                <div class="skill-card">
+                    <h3>Classes and Constructors</h3>
+                    <p>Creating reusable structures for objects.</p>
+                    <span class="level">Learning</span>
+                </div>
+
+                <div class="skill-card">
+                    <h3>Inheritance</h3>
+                    <p>Allowing classes to reuse features from other classes.</p>
+                    <span class="level">Learning</span>
+                </div>
+
+                <div class="skill-card">
+                    <h3>Static Methods</h3>
+                    <p>Creating methods that belong to a class rather than an object.</p>
+                    <span class="level">Learning</span>
+                </div>
+
+                <div class="skill-card">
+                    <h3>DOM Manipulation</h3>
+                    <p>Using JavaScript to interact with webpage elements.</p>
+                    <span class="level">Learning</span>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Category C -->
+        <section class="skill-category" data-category="tools">
+            <h2>Category C – Development Tools</h2>
+
+            <div class="skill-grid">
+
+                <div class="skill-card">
+                    <h3>Visual Studio Code</h3>
+                    <p>Writing and editing code in a development environment.</p>
+                    <span class="level">Comfortable</span>
+                </div>
+
+                <div class="skill-card">
+                    <h3>Browser Developer Tools</h3>
+                    <p>Inspecting webpages and debugging HTML, CSS, and JavaScript.</p>
+                    <span class="level">Learning</span>
+                </div>
+
+                <div class="skill-card">
+                    <h3>GitHub</h3>
+                    <p>Managing and sharing code repositories.</p>
+                    <span class="level">Learning</span>
+                </div>
+
+                <div class="skill-card">
+                    <h3>GitHub Pages</h3>
+                    <p>Publishing websites directly from a GitHub repository.</p>
+                    <span class="level">Learning</span>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 Domenico Fabre-Barile | My Portfolio</p>
+    </footer>
+
+    <script>
+        function filterSkills(category, button) {
+
+            let sections = document.querySelectorAll(".skill-category");
+            let buttons = document.querySelectorAll(".filters button");
+
+            // Remove active class from every button
+            buttons.forEach(function(btn) {
+                btn.classList.remove("active");
+            });
+
+            // Highlight the selected button
+            button.classList.add("active");
+
+            // Show or hide categories
+            sections.forEach(function(section) {
+
+                if (category === "all" ||
+                    section.dataset.category === category) {
+
+                    section.style.display = "block";
+
+                } else {
+
+                    section.style.display = "none";
+
+                }
+
+            });
+        }
+    </script>
+
+</body>
+</html>

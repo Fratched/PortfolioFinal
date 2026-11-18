@@ -1,0 +1,612 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whack-a-Mushroom | My Portfolio</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #101827;
+            color: #f1f5f9;
+        }
+
+        /* Navigation */
+        nav {
+            background: #1e293b;
+            padding: 18px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 12px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #60a5fa;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 35px 15px 15px;
+        }
+
+        header h1 {
+            color: #60a5fa;
+            font-size: 36px;
+        }
+
+        header p {
+            color: #cbd5e1;
+        }
+
+        /* Game Container */
+        .game-container {
+            max-width: 650px;
+            margin: 25px auto;
+            padding: 25px;
+            background: #1e293b;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        /* Scoreboard */
+        .scoreboard {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .score-box {
+            background: #334155;
+            padding: 12px 5px;
+            border-radius: 8px;
+        }
+
+        .score-box h3 {
+            margin: 0 0 8px;
+            font-size: 13px;
+            color: #cbd5e1;
+        }
+
+        .score-box p {
+            margin: 0;
+            font-size: 22px;
+            font-weight: bold;
+            color: #60a5fa;
+        }
+            .mushroom-img {
+             width: 65px;
+             height: 65px;
+             object-fit: contain;
+             pointer-events: none;
+        }   
+        /* Game Board */
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            max-width: 420px;
+            margin: auto;
+        }
+
+        .hole {
+            height: 115px;
+            background: #166534;
+            border: 4px solid #15803d;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 55px;
+            cursor: pointer;
+            transition: 0.15s;
+            user-select: none;
+        }
+
+        .hole:hover {
+            background: #14532d;
+        }
+
+        .hole.active {
+            background: #365314;
+            border-color: #a3e635;
+            transform: scale(1.05);
+        }
+
+        /* Controls */
+        .controls {
+            margin-top: 25px;
+        }
+
+        .controls button {
+            padding: 12px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 7px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            color: white;
+        }
+
+        #startBtn {
+            background: #16a34a;
+        }
+
+        #pauseBtn {
+            background: #d97706;
+        }
+
+        #restartBtn {
+            background: #2563eb;
+        }
+
+        .controls button:hover {
+            opacity: 0.85;
+        }
+
+        button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        /* Messages */
+        #message {
+            min-height: 30px;
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #facc15;
+        }
+
+        .instructions {
+            margin-top: 25px;
+            padding: 15px;
+            background: #334155;
+            border-radius: 8px;
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #94a3b8;
+        }
+
+        @media (max-width: 500px) {
+            .game-container {
+                margin: 15px;
+                padding: 15px;
+            }
+
+            .hole {
+                height: 85px;
+                font-size: 40px;
+            }
+
+            .score-box h3 {
+                font-size: 11px;
+            }
+
+            .score-box p {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="skills.html">Skills</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html">Contact</a>
+        <a href="game.html">My Game</a>
+    </nav>
+
+    <header>
+        <h1><img src="images/mariomushroom.png" alt="Mario Mushroom" width="50"> Whack-a-Mushroom <img src="images/mariomushroom.png" alt="Mario Mushroom" width="50"></h1>
+        <p>Catch the mushrooms before they disappear!</p>
+    </header>
+
+    <div class="game-container">
+
+        <!-- Scoreboard -->
+        <div class="scoreboard">
+
+            <div class="score-box">
+                <h3>Score</h3>
+                <p id="score">0</p>
+            </div>
+
+            <div class="score-box">
+                <h3>Best</h3>
+                <p id="best">0</p>
+            </div>
+
+            <div class="score-box">
+                <h3>Time</h3>
+                <p id="timer">30</p>
+            </div>
+
+            <div class="score-box">
+                <h3>Lives</h3>
+                <p id="lives">3</p>
+            </div>
+
+        </div>
+
+        <!-- Game Board -->
+        <div class="game-board" id="gameBoard">
+
+            <div class="hole" data-index="0"></div>
+            <div class="hole" data-index="1"></div>
+            <div class="hole" data-index="2"></div>
+
+            <div class="hole" data-index="3"></div>
+            <div class="hole" data-index="4"></div>
+            <div class="hole" data-index="5"></div>
+
+            <div class="hole" data-index="6"></div>
+            <div class="hole" data-index="7"></div>
+            <div class="hole" data-index="8"></div>
+
+        </div>
+
+        <!-- Game Controls -->
+        <div class="controls">
+            <button id="startBtn">Start Game</button>
+            <button id="pauseBtn" disabled>Pause</button>
+            <button id="restartBtn">Restart</button>
+        </div>
+
+        <p id="message">Press Start Game to begin!</p>
+
+        <!-- Instructions -->
+        <div class="instructions">
+            <h3>How to Play</h3>
+            <p> Click the mushrooms when they appear to earn points.</p>
+            <p> You have 30 seconds to get the highest score.</p>
+            <p> Missing a mushroom costs one life.</p>
+            <p> Reach 15 points to win!</p>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>© 2026 Domenico Fabre-Barile | JavaScript Game</p>
+    </footer>
+
+
+    <script>
+
+        // GAME VARIABLES
+
+        const holes = document.querySelectorAll(".hole");
+
+        const scoreDisplay = document.getElementById("score");
+        const bestDisplay = document.getElementById("best");
+        const timerDisplay = document.getElementById("timer");
+        const livesDisplay = document.getElementById("lives");
+        const message = document.getElementById("message");
+
+        const startBtn = document.getElementById("startBtn");
+        const pauseBtn = document.getElementById("pauseBtn");
+        const restartBtn = document.getElementById("restartBtn");
+
+        let score = 0;
+        let lives = 3;
+        let timeLeft = 30;
+
+        let activeHole = null;
+
+        let gameRunning = false;
+        let paused = false;
+
+        let timerInterval = null;
+        let mushroomTimeout = null;
+
+        let bestScore = Number(localStorage.getItem("mushroomBest")) || 0;
+
+        const WIN_SCORE = 15;
+        const GAME_TIME = 30;
+
+        bestDisplay.textContent = bestScore;
+
+
+        // UPDATE THE SCOREBOARD
+
+        function updateDisplay() {
+
+            scoreDisplay.textContent = score;
+            livesDisplay.textContent = lives;
+            timerDisplay.textContent = timeLeft;
+
+        }
+
+
+        // CLEAR ALL MUSHROOMS
+
+        function clearMushrooms() {
+
+            holes.forEach(function(hole) {
+
+                hole.textContent = "";
+                hole.classList.remove("active");
+
+            });
+
+            activeHole = null;
+
+        }
+
+
+        // MAKE A RANDOM MUSHROOM APPEAR
+
+        function showMushroom() {
+
+            if (!gameRunning || paused) {
+                return;
+            }
+
+            clearMushrooms();
+
+            // Choose a random hole
+            let randomIndex = Math.floor(Math.random() * holes.length);
+
+            activeHole = holes[randomIndex];
+
+            activeHole.innerHTML = '<img src="images/mariomushroom.png" class="mushroom-img" alt="Mushroom">';
+            activeHole.classList.add("active");
+
+            // Mushroom disappears after 900 milliseconds
+            mushroomTimeout = setTimeout(function() {
+
+                if (activeHole) {
+
+                    clearMushrooms();
+
+                    lives--;
+
+                    updateDisplay();
+
+                    if (lives <= 0) {
+                        endGame("Game Over! You ran out of lives.");
+                    } else {
+                        showMushroom();
+                    }
+
+                }
+
+            }, 900);
+
+        }
+
+
+        // PLAYER CLICKS A HOLE
+
+        holes.forEach(function(hole) {
+
+            hole.addEventListener("click", function() {
+
+                if (!gameRunning || paused) {
+                    return;
+                }
+
+                // Check if the clicked hole has a mushroom
+                if (hole === activeHole) {
+
+                    clearTimeout(mushroomTimeout);
+
+                    clearMushrooms();
+
+                    score++;
+
+                    updateDisplay();
+
+                    // Check winning condition
+                    if (score >= WIN_SCORE) {
+
+                        endGame("🏆 You Win! Great job!");
+
+                    } else {
+
+                        message.textContent = "Nice catch! 🍄";
+
+                        showMushroom();
+
+                    }
+
+                }
+
+            });
+
+        });
+
+
+        // START THE GAME
+
+        function startGame() {
+
+            if (gameRunning) {
+                return;
+            }
+
+            if (paused) {
+                return;
+            }
+
+            score = 0;
+            lives = 3;
+            timeLeft = GAME_TIME;
+
+            gameRunning = true;
+
+            updateDisplay();
+
+            message.textContent = "Catch those mushrooms!";
+
+            startBtn.disabled = true;
+            pauseBtn.disabled = false;
+
+            showMushroom();
+
+            timerInterval = setInterval(function() {
+
+                timeLeft--;
+
+                updateDisplay();
+
+                if (timeLeft <= 0) {
+
+                    if (score >= WIN_SCORE) {
+                        endGame("🏆 You Win!");
+                    } else {
+                        endGame("Time's up! Game Over!");
+                    }
+
+                }
+
+            }, 1000);
+
+        }
+
+
+        // PAUSE AND RESUME
+
+        function pauseGame() {
+
+            if (!gameRunning) {
+                return;
+            }
+
+            if (!paused) {
+
+                paused = true;
+
+                clearInterval(timerInterval);
+                clearTimeout(mushroomTimeout);
+                clearMushrooms();
+
+                pauseBtn.textContent = "Resume";
+
+                message.textContent = "Game Paused";
+
+            } else {
+
+                paused = false;
+
+                pauseBtn.textContent = "Pause";
+
+                message.textContent = "Game Resumed!";
+
+                showMushroom();
+
+                timerInterval = setInterval(function() {
+
+                    timeLeft--;
+
+                    updateDisplay();
+
+                    if (timeLeft <= 0) {
+                        endGame("Time's up! Game Over!");
+                    }
+
+                }, 1000);
+
+            }
+
+        }
+
+
+        // END THE GAME
+
+        function endGame(result) {
+
+            gameRunning = false;
+            paused = false;
+
+            clearInterval(timerInterval);
+            clearTimeout(mushroomTimeout);
+
+            clearMushrooms();
+
+            startBtn.disabled = false;
+            pauseBtn.disabled = true;
+
+            pauseBtn.textContent = "Pause";
+
+            message.textContent = result + " Final Score: " + score;
+
+            // Save highest score
+            if (score > bestScore) {
+
+                bestScore = score;
+
+                localStorage.setItem("mushroomBest", bestScore);
+
+                bestDisplay.textContent = bestScore;
+
+            }
+
+        }
+
+
+        // RESTART THE GAME
+
+        function restartGame() {
+
+            clearInterval(timerInterval);
+            clearTimeout(mushroomTimeout);
+
+            gameRunning = false;
+            paused = false;
+
+            score = 0;
+            lives = 3;
+            timeLeft = GAME_TIME;
+
+            clearMushrooms();
+
+            updateDisplay();
+
+            startBtn.disabled = false;
+            pauseBtn.disabled = true;
+
+            pauseBtn.textContent = "Pause";
+
+            message.textContent = "Game restarted! Press Start Game.";
+
+        }
+
+
+        // BUTTON EVENT LISTENERS
+
+        startBtn.addEventListener("click", startGame);
+
+        pauseBtn.addEventListener("click", pauseGame);
+
+        restartBtn.addEventListener("click", restartGame);
+
+        updateDisplay();
+
+    </script>
+
+</body>
+</html>

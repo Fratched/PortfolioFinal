@@ -1,0 +1,341 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Domenico</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #101827;
+            color: white;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 8%;
+            border-bottom: 1px solid #334155;
+        }
+
+        nav h2 {
+            color: #60A5FA;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+        }
+
+        nav a:hover {
+            color: #60A5FA;
+        }
+
+        /* Page Header */
+        header {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        header h1 {
+            color: #60A5FA;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: #CBD5E1;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 30px;
+        }
+
+        /* Contact Information */
+        .contact-info {
+            background: #1E293B;
+            padding: 25px;
+            border-radius: 12px;
+        }
+
+        .contact-info h2 {
+            color: #60A5FA;
+            margin-bottom: 20px;
+        }
+
+        .contact-info p {
+            margin-bottom: 18px;
+            line-height: 1.6;
+            color: #CBD5E1;
+        }
+
+        .contact-info a {
+            color: #60A5FA;
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: #1E293B;
+            padding: 25px;
+            border-radius: 12px;
+        }
+
+        .contact-form h2 {
+            color: #60A5FA;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #475569;
+            border-radius: 6px;
+            background: #334155;
+            color: white;
+            font-size: 15px;
+        }
+
+        textarea {
+            height: 130px;
+            resize: vertical;
+        }
+
+        input:focus, textarea:focus {
+            outline: 2px solid #60A5FA;
+        }
+
+        button {
+            background: #2563EB;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #1D4ED8;
+        }
+
+        /* Messages */
+        #errorMessage {
+            color: #F87171;
+            margin-top: 15px;
+            line-height: 1.6;
+        }
+
+        #successMessage {
+            color: #4ADE80;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #94A3B8;
+        }
+
+        /* Mobile */
+        @media (max-width: 750px) {
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                margin: 5px;
+            }
+
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <h2>DOMENICO.</h2>
+
+        <div>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="skills.html">Skills</a>
+            <a href="projects.html">Projects</a>
+            <a href="game.html">Game</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <h1>Contact Me</h1>
+        <p>Have a question or opportunity? Feel free to contact me!</p>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+
+        <!-- Contact Information -->
+        <section class="contact-info">
+
+            <h2>My Information</h2>
+
+            <p>
+                <strong>Full Name:</strong><br>
+                Domenico Fabre-Barile
+            </p>
+
+            <p>
+                <strong>Professional Email:</strong><br>
+                <a href="mailto:domenicobarille@gmail.com">
+                    domenicobarille@gmail.com
+                </a>
+            </p>
+
+            <p>
+                <strong>GitHub:</strong><br>
+                <a href="https://github.com/Fratched" target="_blank">
+                    github.com/Fratched
+                </a>
+            </p>
+
+            <p>
+                <strong>LinkedIn:</strong><br>
+                <a href="https://linkedin.com/in/domenico-fabre-barile"
+                   target="_blank">
+                    My LinkedIn Profile
+                </a>
+            </p>
+
+        </section>
+
+        <!-- Contact Form -->
+        <section class="contact-form">
+
+            <h2>Send Me a Message</h2>
+
+            <form id="contactForm">
+
+                <label for="name">Full Name</label>
+                <input type="text" id="name" placeholder="Enter your name">
+
+                <label for="email">Email Address</label>
+                <input type="text" id="email" placeholder="Enter your email">
+
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" placeholder="Enter subject">
+
+                <label for="message">Message</label>
+                <textarea id="message" placeholder="Write your message"></textarea>
+
+                <button type="submit">Submit Message</button>
+
+                <p id="errorMessage"></p>
+                <p id="successMessage"></p>
+
+            </form>
+
+        </section>
+
+    </div>
+
+    <footer>
+        <p>© 2026 Domenico Fabre-Barile | Contact Page</p>
+    </footer>
+
+
+    <script>
+
+        // Contact Form Validation
+
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            let name = document.getElementById("name").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let subject = document.getElementById("subject").value.trim();
+            let message = document.getElementById("message").value.trim();
+
+            let error = document.getElementById("errorMessage");
+            let success = document.getElementById("successMessage");
+
+            error.textContent = "";
+            success.textContent = "";
+
+            let errors = [];
+
+            // Check name
+            if (name === "") {
+                errors.push("Please enter your full name.");
+            }
+
+            // Check email
+            if (email === "") {
+                errors.push("Please enter your email address.");
+            } else if (!email.includes("@") || !email.includes(".")) {
+                errors.push("Please enter a valid email address.");
+            }
+
+            // Check subject
+            if (subject === "") {
+                errors.push("Please enter a subject.");
+            }
+
+            // Check message
+            if (message === "") {
+                errors.push("Please enter a message.");
+            }
+
+            // Display errors
+            if (errors.length > 0) {
+
+                error.innerHTML = errors.join("<br>");
+
+            } else {
+
+                success.textContent =
+                    "Thank you! Your form has been successfully validated.";
+
+                document.getElementById("contactForm").reset();
+
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>
