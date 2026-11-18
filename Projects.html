@@ -1,0 +1,538 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Projects | Domenico</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #101827;
+            color: white;
+        }
+
+        /* Navigation */
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 8%;
+            border-bottom: 1px solid #334155;
+        }
+
+        nav h2 {
+            color: #60A5FA;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 18px;
+        }
+
+        nav a:hover {
+            color: #60A5FA;
+        }
+
+        /* Page heading */
+
+        .header {
+            text-align: center;
+            padding: 60px 20px 30px;
+        }
+
+        .header h1 {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .header p {
+            color: #CBD5E1;
+            line-height: 1.6;
+        }
+
+        /* Search */
+
+        .search-container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        #searchInput {
+            width: 90%;
+            max-width: 400px;
+            padding: 13px;
+            border-radius: 6px;
+            border: none;
+            font-size: 15px;
+        }
+
+        /* Filters */
+
+        .filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px;
+        }
+
+        .filters button {
+            background: #334155;
+            color: white;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .filters button:hover,
+        .filters button.active {
+            background: #2563EB;
+        }
+
+        /* Project cards */
+
+        .project-container {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(280px, 1fr));
+
+            gap: 25px;
+            padding: 30px 8%;
+        }
+
+        .project-card {
+            background: #1E293B;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .project-info {
+            padding: 22px;
+        }
+
+        .project-info h2 {
+            margin-bottom: 12px;
+            color: #60A5FA;
+        }
+
+        .project-info p {
+            color: #CBD5E1;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .technology {
+            color: #93C5FD;
+            font-size: 14px;
+            margin-bottom: 18px;
+        }
+
+        .project-info a {
+            display: inline-block;
+            background: #2563EB;
+            color: white;
+            text-decoration: none;
+            padding: 10px 16px;
+            border-radius: 6px;
+        }
+
+        .project-info a:hover {
+            background: #1D4ED8;
+        }
+
+        /* Empty search message */
+
+        #noResults {
+            display: none;
+            text-align: center;
+            padding: 30px;
+            color: #CBD5E1;
+        }
+
+        /* Footer */
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            color: #94A3B8;
+            border-top: 1px solid #334155;
+            margin-top: 40px;
+        }
+
+        /* Mobile */
+
+        @media (max-width: 750px) {
+
+            nav {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav a {
+                margin: 5px;
+            }
+
+            .header h1 {
+                font-size: 30px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+
+    <nav>
+
+        <h2>DOMENICO.</h2>
+
+        <div>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="skills.html">Skills</a>
+            <a href="projects.html">Projects</a>
+            <a href="education.html">Education</a>
+            <a href="contact.html">Contact</a>
+        </div>
+
+    </nav>
+
+
+    <!-- Page heading -->
+
+    <section class="header">
+
+        <h1>My Projects</h1>
+
+        <p>
+            Welcome to my project collection!
+
+            Here you can explore some of the games,
+            programming projects, and applications
+            I have worked on.
+        </p>
+
+    </section>
+
+
+    <!-- Search bar -->
+
+    <div class="search-container">
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search for a project..."
+            onkeyup="filterProjects()"
+        >
+
+    </div>
+
+
+    <!-- Category filters -->
+
+    <div class="filters">
+
+        <button class="active"
+            onclick="selectCategory('all', this)">
+            All Projects
+        </button>
+
+        <button onclick="selectCategory('game', this)">
+            Game Development
+        </button>
+
+        <button onclick="selectCategory('web', this)">
+            Web Development
+        </button>
+
+        <button onclick="selectCategory('javascript', this)">
+            JavaScript
+        </button>
+
+    </div>
+
+
+    <!-- Project collection -->
+
+    <section class="project-container" id="projectContainer">
+
+
+        <!-- Project 1 -->
+
+        <div class="project-card" data-category="game">
+
+            <img
+                src="images/fields-of-red.png"
+                alt="Fields of Red game screenshot"
+            >
+
+            <div class="project-info">
+
+                <h2>Fields of Red</h2>
+
+                <p>
+                    Fields of Red is an atmospheric horror
+                    game developed during the Behaviour
+                    Interactive Game Jam 2026.
+
+                    The project focuses on exploration,
+                    atmosphere, and survival.
+                </p>
+
+                <p class="technology">
+                    Technologies: Game Development,
+                    Team Collaboration
+                </p>
+
+                <a
+                    href="https://napstyy.itch.io/fields-of-red"
+                    target="_blank">
+                    View Project
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- Project 2 -->
+
+        <div class="project-card" data-category="game">
+
+            <img
+                src="images/corpse-hustle.png"
+                alt="Corpse Hustle game screenshot"
+            >
+
+            <div class="project-info">
+
+                <h2>Corpse Hustle</h2>
+
+                <p>
+                    Corpse Hustle is an action game
+                    developed in Unreal Engine 5.
+
+                    The objective is to survive waves
+                    of enemies while experiencing
+                    fast-paced arcade gameplay.
+                </p>
+
+                <p class="technology">
+                    Technologies: Unreal Engine 5
+                </p>
+
+                <a
+                    href="https://fratched.itch.io/corpse-hustle"
+                    target="_blank">
+                    View Project
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- Project 3 -->
+
+        <div class="project-card" data-category="game">
+
+            <img
+                src="images/ring-of-momentumori.png"
+                alt="Ring of Momentumori game screenshot"
+            >
+
+            <div class="project-info">
+
+                <h2>Ring of Momentumori</h2>
+
+                <p>
+                    A 2D fantasy platformer developed
+                    during a 46-hour game jam.
+
+                    I contributed to programming,
+                    sound design, and level design.
+                </p>
+
+                <p class="technology">
+                    Technologies: Unity, C#
+                </p>
+
+                <a
+                    href="https://akipannn.itch.io/ring-of-momentumori"
+                    target="_blank">
+                    View Project
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- ADD YOUR COURSE PROJECTS BELOW -->
+
+        <!--
+        Example:
+
+        <div class="project-card" data-category="web">
+
+            <img src="images/my-website.png"
+                 alt="My first website">
+
+            <div class="project-info">
+
+                <h2>My First HTML Website</h2>
+
+                <p>
+                    A website created using HTML
+                    to practice page structure
+                    and basic web development.
+                </p>
+
+                <p class="technology">
+                    Technologies: HTML, CSS
+                </p>
+
+                <a href="YOUR_PROJECT_LINK">
+                    View Project
+                </a>
+
+            </div>
+
+        </div>
+        -->
+
+    </section>
+
+
+    <p id="noResults">
+        No projects found.
+    </p>
+
+
+    <!-- Footer -->
+
+    <footer>
+
+        <p>
+            © 2026 Domenico Fabre-Barile.
+            All Rights Reserved.
+        </p>
+
+    </footer>
+
+
+    <script>
+
+        // Selected category
+        let currentCategory = "all";
+
+
+        // Feature 1: Filter projects by category
+
+        function selectCategory(category, button) {
+
+            currentCategory = category;
+
+            let buttons = document.querySelectorAll(
+                ".filters button"
+            );
+
+            buttons.forEach(function(btn) {
+                btn.classList.remove("active");
+            });
+
+            button.classList.add("active");
+
+            filterProjects();
+
+        }
+
+
+        // Feature 2: Search for projects
+
+        function filterProjects() {
+
+            let search = document
+                .getElementById("searchInput")
+                .value.toLowerCase();
+
+            let projects = document.querySelectorAll(
+                ".project-card"
+            );
+
+            let visibleCount = 0;
+
+            projects.forEach(function(project) {
+
+                let title = project
+                    .querySelector("h2")
+                    .textContent.toLowerCase();
+
+                let description = project
+                    .querySelector("p")
+                    .textContent.toLowerCase();
+
+                let category = project.dataset.category;
+
+                let matchesSearch =
+                    title.includes(search) ||
+                    description.includes(search);
+
+                let matchesCategory =
+                    currentCategory === "all" ||
+                    category === currentCategory;
+
+                if (matchesSearch && matchesCategory) {
+
+                    project.style.display = "block";
+                    visibleCount++;
+
+                } else {
+
+                    project.style.display = "none";
+
+                }
+
+            });
+
+
+            // Display message if nothing is found
+
+            document.getElementById("noResults").style.display =
+                visibleCount === 0 ? "block" : "none";
+
+        }
+
+    </script>
+
+</body>
+
+</html>

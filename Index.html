@@ -1,0 +1,338 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Domenico | Portfolio</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #101827;
+            color: white;
+            transition: 0.3s;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 8%;
+            border-bottom: 1px solid #334155;
+        }
+
+        nav h2 {
+            color: #60A5FA;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        nav a:hover {
+            color: #60A5FA;
+        }
+
+        /* Main section */
+        .hero {
+            min-height: 75vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
+            padding: 60px 10%;
+        }
+
+        .intro {
+            max-width: 600px;
+        }
+
+        .intro h1 {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .intro h2 {
+            color: #60A5FA;
+            margin-bottom: 20px;
+        }
+
+        .intro p {
+            color: #CBD5E1;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        /* Avatar */
+        .avatar {
+            width: 260px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 20px;
+            border: 3px solid #60A5FA;
+        }
+
+        /* Buttons */
+        button, .btn {
+            background: #2563EB;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin: 5px;
+        }
+
+        button:hover, .btn:hover {
+            background: #1D4ED8;
+        }
+
+        /* Skills */
+        .skills {
+            text-align: center;
+            padding: 50px 10%;
+            background: #1E293B;
+        }
+
+        .skills h2 {
+            margin-bottom: 25px;
+        }
+
+        .skill-list {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .skill {
+            background: #334155;
+            padding: 12px 20px;
+            border-radius: 8px;
+        }
+
+        /* Projects */
+        .projects {
+            text-align: center;
+            padding: 60px 10%;
+        }
+
+        .projects h2 {
+            margin-bottom: 20px;
+        }
+
+        #moreInfo {
+            display: none;
+            margin-top: 20px;
+            color: #CBD5E1;
+        }
+
+        /* Light mode */
+        .light-mode {
+            background: #F1F5F9;
+            color: #111827;
+        }
+
+        .light-mode nav a {
+            color: #111827;
+        }
+
+        .light-mode .skills {
+            background: #E2E8F0;
+        }
+
+        .light-mode .intro p,
+        .light-mode #moreInfo {
+            color: #334155;
+        }
+
+        /* Mobile */
+        @media (max-width: 750px) {
+            nav {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            nav a {
+                margin: 5px;
+            }
+
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+
+            .intro h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <h2>DOMENICO.</h2>
+
+        <div>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="skills.html">Skills</a>
+            <a href="projects.html">Projects</a>
+            <a href="education.html">Education</a>
+            <a href="contact.html">Contact</a>
+        </div>
+
+        <button onclick="toggleTheme()">🌙 Theme</button>
+    </nav>
+
+    <!-- Welcome section -->
+    <section class="hero">
+
+        <div class="intro">
+
+            <h1 id="welcome">Welcome to my portfolio!</h1>
+
+            <h2>Domenico Fabre-Barile</h2>
+
+            <h3>Computer Programming Student</h3>
+
+            <p>
+                Hello! I'm Domenico, a programming student
+                passionate about software development,
+                game development, and technology.
+
+                I enjoy learning new technologies,
+                building projects, and solving problems
+                through programming.
+            </p>
+
+            <p id="clock"></p>
+
+            <button onclick="showInfo()">More About Me</button>
+
+            <a href="projects.html" class="btn">
+                View Projects
+            </a>
+
+            <a href="contact.html" class="btn">
+                Contact Me
+            </a>
+
+            <p id="moreInfo">
+                I have experience working with C#, C++,
+                Unity, Unreal Engine, and object-oriented
+                programming. I'm always looking to improve
+                my skills and learn something new.
+            </p>
+
+        </div>
+
+        <img
+            src="avatar.png"
+            alt="Domenico's professional avatar"
+            class="avatar"
+        >
+
+    </section>
+
+    <!-- Skills -->
+    <section class="skills">
+
+        <h2>Technical Skills</h2>
+
+        <div class="skill-list">
+            <div class="skill">C#</div>
+            <div class="skill">C++</div>
+            <div class="skill">HTML</div>
+            <div class="skill">CSS</div>
+            <div class="skill">JavaScript</div>
+            <div class="skill">Unity</div>
+            <div class="skill">Unreal Engine</div>
+            <div class="skill">Git</div>
+        </div>
+
+    </section>
+
+    <!-- Projects preview -->
+    <section class="projects">
+
+        <h2>Latest Projects</h2>
+
+        <p>
+            Take a look at some of my programming
+            and game development projects.
+        </p>
+
+        <a href="projects.html" class="btn">
+            Explore My Projects
+        </a>
+
+    </section>
+
+    <script>
+
+        // Feature 1: Show additional information
+        function showInfo() {
+
+            let info = document.getElementById("moreInfo");
+
+            if (info.style.display === "none") {
+                info.style.display = "block";
+            } else {
+                info.style.display = "none";
+            }
+
+        }
+
+        // Feature 2: Dark and light mode
+        function toggleTheme() {
+
+            document.body.classList.toggle("light-mode");
+
+        }
+
+        // Feature 3: Dynamic welcome message
+        let hour = new Date().getHours();
+
+        if (hour < 12) {
+            document.getElementById("welcome").innerHTML =
+                "Good morning! Welcome to my portfolio.";
+        } else if (hour < 18) {
+            document.getElementById("welcome").innerHTML =
+                "Good afternoon! Welcome to my portfolio.";
+        } else {
+            document.getElementById("welcome").innerHTML =
+                "Good evening! Welcome to my portfolio.";
+        }
+
+        // Feature 4: Live clock
+        function updateClock() {
+
+            let now = new Date();
+
+            document.getElementById("clock").innerHTML =
+                "Current time: " + now.toLocaleTimeString();
+
+        }
+
+        updateClock();
+        setInterval(updateClock, 1000);
+
+    </script>
+
+</body>
+</html>
