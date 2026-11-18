@@ -265,16 +265,16 @@
             All Projects
         </button>
 
-        <button onclick="selectCategory('game', this)">
-            Game Development
+        <button onclick="selectCategory('unreal', this)">
+            Unreal Engine
         </button>
 
-        <button onclick="selectCategory('web', this)">
-            Web Development
+        <button onclick="selectCategory('gamejam', this)">
+            Game Jam
         </button>
 
-        <button onclick="selectCategory('javascript', this)">
-            JavaScript
+        <button onclick="selectCategory('horror', this)">
+            Horror
         </button>
 
     </div>
@@ -287,7 +287,7 @@
 
         <!-- Project 1 -->
 
-        <div class="project-card" data-category="game">
+        <div class="project-card" data-category="game horror gamejam">
 
             <img
                 src="images/fields-of-red.png"
@@ -308,7 +308,7 @@
                 </p>
 
                 <p class="technology">
-                    Technologies: Game Development,
+                    Technologies: Unity, C# Game Development,Game Jam
                     Team Collaboration
                 </p>
 
@@ -325,7 +325,7 @@
 
         <!-- Project 2 -->
 
-        <div class="project-card" data-category="game">
+        <div class="project-card" data-category="unreal">
 
             <img
                 src="images/corpse-hustle.png"
@@ -362,7 +362,7 @@
 
         <!-- Project 3 -->
 
-        <div class="project-card" data-category="game">
+        <div class="project-card" data-category="game gamejam unity">
 
             <img
                 src="images/ring-of-momentumori.png"
@@ -382,7 +382,7 @@
                 </p>
 
                 <p class="technology">
-                    Technologies: Unity, C#
+                    Technologies: Unity, C#,Game Jam
                 </p>
 
                 <a
@@ -395,40 +395,40 @@
 
         </div>
 
+<div class="project-card" data-category="unreal">
 
-        <!-- ADD YOUR COURSE PROJECTS BELOW -->
+    <img
+        src="images/mad-dice.png"
+        alt="Mad Dice game screenshot"
+    >
 
-        <!--
-        Example:
+    <div class="project-info">
 
-        <div class="project-card" data-category="web">
+        <h2>Mad Dice</h2>
 
-            <img src="images/my-website.png"
-                 alt="My first website">
+        <p>
+            Mad Dice is a roguelite game developed
+            by MADS Studio using Unreal Engine 5.
 
-            <div class="project-info">
+            I contributed to animations, asset
+            development, map layout, and gameplay
+            mechanics.
+        </p>
 
-                <h2>My First HTML Website</h2>
+        <p class="technology">
+            Technologies: Unreal Engine 5
+        </p>
 
-                <p>
-                    A website created using HTML
-                    to practice page structure
-                    and basic web development.
-                </p>
+        <a
+            href="https://store.steampowered.com/app/4175350/Mad_Dice/"
+            target="_blank">
+            View Project
+        </a>
 
-                <p class="technology">
-                    Technologies: HTML, CSS
-                </p>
+    </div>
 
-                <a href="YOUR_PROJECT_LINK">
-                    View Project
-                </a>
-
-            </div>
-
-        </div>
-        -->
-
+</div>
+        
     </section>
 
 
@@ -500,15 +500,15 @@
                     .querySelector("p")
                     .textContent.toLowerCase();
 
-                let category = project.dataset.category;
+                let categories = project.dataset.category.split(" ");
 
                 let matchesSearch =
                     title.includes(search) ||
                     description.includes(search);
 
                 let matchesCategory =
-                    currentCategory === "all" ||
-                    category === currentCategory;
+    currentCategory === "all" ||
+    categories.includes(currentCategory);
 
                 if (matchesSearch && matchesCategory) {
 
